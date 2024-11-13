@@ -1,0 +1,8 @@
+/* form.component.css */
+select.form-control {
+    color: black; /* Cambia el color del texto dentro del select */
+}
+
+select.form-control option {
+    color: black; /* Asegura que las opciones dentro del desplegable también sean negras */
+}

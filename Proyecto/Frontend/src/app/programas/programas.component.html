@@ -1,0 +1,33 @@
+<div class="card bg-light mb-3 my-5">
+    <div class="card-header">Programas</div>
+    <div class="card-body">
+      <h5 class="card-title">Lista Programas </h5>
+      <div class="my-2 text-left">
+        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/programas/formP']">Crear Programa</button>
+      </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Nombre programas</th>
+            <th>Facultad</th>
+            <th>Numero de Creditos</th>
+            <th>Numero de Semestres</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let indice of programas">
+                <td>{{indice.id}}</td>
+                <td>{{indice.nomPrograma}}</td>
+                <td>{{indice.facultad}}</td>
+                <td>{{indice.num_credito}}</td>
+                <td>{{indice.num_semestre}}</td>
+                <td>
+                  <button type="button" name="editar" [routerLink]="['/programas/formP', indice.id]" class="btn btn-primary">Editar</button>
+                </td>
+                <td>
+                  <button type="button" name="eliminar" (click)="delete(indice)" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

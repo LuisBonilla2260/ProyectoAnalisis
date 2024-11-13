@@ -1,0 +1,55 @@
+<div class="card bg-dark text-white">
+    <div class="card-header">formulario estudiante</div>
+    <div class="card-body">
+      <form>
+        <div class="form-group row">
+          <label for="id" class="col-sm-2 col-form-label">Id</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" [(ngModel)]="estudiantes.id" name="id" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="nombreEstudiante" class="col-sm-2 col-form-label">Nombre del Estudiante</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="estudiantes.nombreEstudiante" name="nombreEstudiante" />
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="edad" class="col-sm-2 col-form-label">Edad</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" [(ngModel)]="estudiantes.edad" name="edad" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="documento" class="col-sm-2 col-form-label">Documento</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="estudiantes.documento" name="documento" />
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="programa" class="col-sm-2 col-form-label">Programa</label>
+          <div class="col-sm-6">
+            <select class="form-control" [(ngModel)]="selectedPrograma" name="programa">
+              <option *ngFor="let programa of programas" [value]="programa.id">
+                {{ programa.nomPrograma }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <!-- <div class="form-group row">
+            <label>Programa:</label>
+            <select class="form-control">
+                <option *ngFor="let prog of programas">{{ prog.estudiantes.estudiantes}}</option>
+            </select>
+        </div> -->
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" role="button" *ngIf="!estudiantes.id" (click)="create()">Crear</button>
+            <button class="btn btn-primary" *ngIf="estudiantes.id" (click)="update()">Actualizar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

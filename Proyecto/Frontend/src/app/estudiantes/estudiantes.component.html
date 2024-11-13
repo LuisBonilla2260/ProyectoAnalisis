@@ -1,0 +1,33 @@
+<div class="card bg-light mb-3 my-5">
+  <div class="card-header">Estudiantes</div>
+  <div class="card-body">
+    <h5 class="card-title">Lista de Estudiantes</h5>
+    <div class="my-2 text-left">
+      <button class="btn btn-primary" type="button" [routerLink]="['/estudiantes/form']">Crear Estudiante</button>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Documento</th>
+          <th>Programa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of estudiantes " >
+          <td>{{ estudiante.id }}</td>
+          <td>{{ estudiante.nombreEstudiante }}</td>
+          <td>{{ estudiante.edad }}</td>
+          <td>{{ estudiante.documento }}</td>
+          <td>{{ estudiante.programaId.nomPrograma }}</td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="['/estudiantes/form', estudiante.id]">Editar</button>
+            <button class="btn btn-danger" (click)="delete(estudiante)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
