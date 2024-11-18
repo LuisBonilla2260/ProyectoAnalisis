@@ -3,6 +3,7 @@ package com.corhuilabd.corhuilabd.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.corhuilabd.corhuilabd.models.Estudiante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ProgramaServiceImpl implements IProgramaService {
     }
 
     @Override
-    public Optional<Programa> findById(Integer id) {
+    public Optional<Programa> findById(Long id) {
         return repository.findById(id);
     }
 
@@ -30,24 +31,26 @@ public class ProgramaServiceImpl implements IProgramaService {
     }
 
     @Override
-    public void update(Programa programa, Integer id) {
-        Optional<Programa> program = repository.findById(id);
+    public void update(Programa prog, Long id) {
+        Optional<Programa> programa = repository.findById(id);
 
-        if(!program.isEmpty()){
-            Programa proActual = program.get();
-            proActual.setNomPrograma(programa.getNomPrograma());
-            proActual.setFacultad(programa.getFacultad());
-            proActual.setNum_credito(programa.getNum_credito());
-            proActual.setNum_semestre(programa.getNum_semestre());
-            repository.save(proActual);
+        if(!programa.isEmpty()){
+            Programa progAct = programa.get();
+            progAct.setFacultad(prog.getFacultad());
+            progAct.setNomPrograma(prog.getNomPrograma());
+            progAct.setNumCredito(prog.getNumCredito());
+            progAct.setNumSemestre(prog.getNumSemestre());
+            repository.save(progAct);
         }else{
             System.out.println("Dato no encontrado");
         }
+
+
     }
 
     @Override
-    public void delete(Integer id) {
-            repository.deleteById(id);
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 
     @Override

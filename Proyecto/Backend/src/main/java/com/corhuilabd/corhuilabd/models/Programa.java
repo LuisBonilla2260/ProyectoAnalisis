@@ -2,37 +2,39 @@ package com.corhuilabd.corhuilabd.models;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "programa")
 public class Programa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(length = 100, name = "nombre")
+    @Column(length = 100)
     private String nomPrograma;
 
-    @Column(length = 100, name = "facultad")
+    @Column(length = 100)
     private String facultad;
 
-    private Integer num_semestre;
+    @Column(name = "num_semestre")
+    private Integer numSemestre;
 
-    private Integer num_credito;
+    @Column(name = "num_credito")
+    private Integer numCredito;
 
 
 
-    private static final long serialVersionUID=1L;
-
+    private static final long serialVersionUID = 1L;
 
     // Getters y setters
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,19 +54,19 @@ public class Programa implements Serializable {
         this.facultad = facultad;
     }
 
-    public Integer getNum_semestre() {
-        return num_semestre;
+    public Integer getNumSemestre() {
+        return numSemestre;
     }
 
-    public void setNum_semestre(Integer num_semestre) {
-        this.num_semestre = num_semestre;
+    public void setNumSemestre(Integer numSemestre) {
+        this.numSemestre = numSemestre;
     }
 
-    public Integer getNum_credito() {
-        return num_credito;
+    public Integer getNumCredito() {
+        return numCredito;
     }
 
-    public void setNum_credito(Integer num_credito) {
-        this.num_credito = num_credito;
+    public void setNumCredito(Integer numCredito) {
+        this.numCredito = numCredito;
     }
 }

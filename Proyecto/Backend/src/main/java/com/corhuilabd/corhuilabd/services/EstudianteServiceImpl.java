@@ -33,11 +33,12 @@ public class EstudianteServiceImpl implements IEstudianteService {
     @Override
     public void update(Estudiante est, Integer id) {
         Optional<Estudiante> estudiante = repository.findById(id);
-
         if(!estudiante.isEmpty()){
             Estudiante estActual = estudiante.get();
             estActual.setDocumento(est.getDocumento());
             estActual.setNombreEstudiante(est.getNombreEstudiante());
+            estActual.setEdad(est.getEdad());
+            estActual.setProgramaId(est.getProgramaId());
             repository.save(estActual);
         }else{
             System.out.println("Dato no encontrado");

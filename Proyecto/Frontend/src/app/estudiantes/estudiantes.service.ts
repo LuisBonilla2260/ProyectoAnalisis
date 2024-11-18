@@ -32,10 +32,11 @@ export class EstudiantesService {
     return this.http.get<Estudiante>(`${this.urlEndpoint}/${id}`)
   }
   
-  //Edición final
-  update(estudiante: Estudiante):Observable<Estudiante>{
-    return this.http.put<Estudiante>(`${this.urlEndpoint}/${estudiante.id}`, estudiante, {headers:this.httpHeaders})
-  }
+  update(estudiante: Estudiante): Observable<Estudiante> {
+    return this.http.put<Estudiante>(`${this.urlEndpoint}/${estudiante.id}`, estudiante, {
+      headers: this.httpHeaders
+    });
+  }  
   
   //Eliminar
   delete(id:number):Observable<Estudiante>{

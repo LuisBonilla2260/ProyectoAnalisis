@@ -36,20 +36,24 @@ export class FormComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
       if (id) {
-        this.estudiantesService.getEstudiante(id).subscribe((estudiante) => (this.estudiantes = estudiante));
+        this.estudiantesService.getEstudiante(id).subscribe((estudiante) => {
+          this.estudiantes = estudiante;
+          if (this.estudiantes.programaId) {
+            this.selectedPrograma = this.estudiantes.programaId.id;
+          }
+        });
       }
     });
-  }
+  }  
 
-  create(): void {
+  public create(): void {
     // Busca el programa seleccionado por su ID y lo asigna al estudiante
-    const selectedPrograma = this.programas.find(prog => prog.id === this.selectedPrograma);
-    if (selectedPrograma) {
+    const selectedPrograma = this.programas.find((prog) => prog.id === this.selectedPrograma);
+
+    if (selectedPrograma) {      
       this.estudiantes.programaId = selectedPrograma;
     }
-  
-    // Verificar los datos antes de enviarlos
-    console.log("Datos del estudiante a enviar:", this.estudiantes);
+    console.log(this.estudiantes.programaId+"abcd");
   
     this.estudiantesService.create(this.estudiantes).subscribe({
       next: (estudiante) => {
@@ -63,12 +67,26 @@ export class FormComponent implements OnInit {
     });
   }
   
-  
-
   update(): void {
-    this.estudiantesService.update(this.estudiantes).subscribe(() => {
-      this.router.navigate(['/estudiantes']);
-      Swal.fire('Estudiante Actualizado', `El estudiante fue actualizado con éxito`, 'success');
+    // Busca el programa seleccionado por su ID y lo asigna al estudiante
+    const selectedPrograma = this.programas.find((prog) => prog.id === this.selectedPrograma);
+  
+    if (selectedPrograma) {
+      this.estudiantes.programaId = selectedPrograma; // Asegura que se asigna el objeto completo del programa
+    }
+  
+    console.log("Datos del estudiante a actualizar:", this.estudiantes); // Log para verificar los datos antes de enviar
+  
+    this.estudiantesService.update(this.estudiantes).subscribe({
+      next: () => {
+        this.router.navigate(['/estudiantes']);
+        Swal.fire('Estudiante Actualizado', `El estudiante ${this.estudiantes.nombreEstudiante} ha sido actualizado con éxito`, 'success');
+      },
+      error: (error) => {
+        console.error("Error en el servidor:", error); // Log para depurar errores del servidor
+        Swal.fire('Error', 'No se pudo actualizar el estudiante. Verifica los datos y vuelve a intentarlo.', 'error');
+      }
     });
   }
+  
 }

@@ -1,6 +1,7 @@
 package com.corhuilabd.corhuilabd.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.corhuilabd.corhuilabd.services.IProgramaService;
@@ -26,8 +27,7 @@ public class ProgramaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Programa> getById(@PathVariable Integer id) {
-        return service.findById(id);
+    public Optional<Programa> getById(@PathVariable Long id) {return service.findById(id);
     }
 
     @PostMapping("")
@@ -37,13 +37,13 @@ public class ProgramaController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Programa update(@RequestBody Programa programa, @PathVariable Integer id){
+    public Programa update(@RequestBody Programa programa, @PathVariable Long id){
         service.update(programa, id);
-        return  programa;
+        return programa;
     }
     
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
